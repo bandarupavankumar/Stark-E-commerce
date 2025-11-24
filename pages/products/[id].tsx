@@ -6,6 +6,8 @@ import { useCart } from '../../context/CartContext';
 import Link from 'next/link';
 import { Header } from '../../components/Header';
 import ProductComments from '../../components/ProductComments';
+import { formatPrice } from '../../utils/format';
+
 interface ProductType {
   id: number;
   title: string;
@@ -104,7 +106,7 @@ export default function ProductDetail() {
                 
                 <div className="mt-4">
                   <span className="text-3xl font-bold text-gray-900">
-                    ${product.price.toFixed(2)}
+                    {formatPrice(product.price)}
                   </span>
                   <p className="text-green-600 text-sm mt-1">In Stock</p>
                 </div>
@@ -133,13 +135,14 @@ export default function ProductDetail() {
                     </div>
                     <button
                       onClick={() => {
-                        addToCart({
-                          id: product.id,
-                          title: product.title,
-                          price: product.price,
-                          image: product.image,
-                          quantity,
-                        });
+                        for (let i = 0; i < quantity; i++) {
+                          addToCart({
+                            id: product.id,
+                            title: product.title,
+                            price: product.price,
+                            image: product.image,
+                          });
+                        }
                       }}
                       className="flex-1 bg-yellow-400 border border-yellow-500 rounded-md py-2 px-8 text-sm font-medium text-gray-900 hover:bg-yellow-500"
                     >

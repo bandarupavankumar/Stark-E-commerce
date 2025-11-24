@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { StarIcon } from '@heroicons/react/24/solid';
 import { useDispatch } from 'react-redux';
 import { addToBasket } from '../slices/basketSlice';
+import { formatPrice } from '../utils/format';
 
 type ProductProps = {
   id: number;
@@ -65,7 +66,7 @@ export const Product = ({
       <p className="text-xs my-2 line-clamp-2">{description}</p>
 
       <div className="mb-5">
-        <p>${price}</p>
+        <p className="text-lg font-medium text-gray-900">{formatPrice(price)}</p>
       </div>
 
       <button

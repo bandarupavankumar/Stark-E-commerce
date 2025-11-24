@@ -1,10 +1,13 @@
  import { useEffect, useState, useMemo } from 'react';
 import Head from 'next/head';
-import { Product } from '../components/Product';
+import { StarIcon } from '@heroicons/react/24/solid';
 import { useCart } from '../context/CartContext';
+import { useRouter } from 'next/router';
+import { formatPrice } from '../utils/format';
+import { Product } from '../components/Product';
 import { Cart } from '../components/Cart';
 import { Banner } from '../components/Banner';
-import { StarIcon, FunnelIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { FunnelIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Header } from '@/components/Header';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
@@ -362,7 +365,7 @@ export default function Home({ initialProducts }: { initialProducts: ProductType
                       </div>
                       <div className="mt-4">
                         <p className="text-3xl font-bold text-gray-900">
-                          ${products[0].price.toFixed(2)}
+                          {formatPrice(products[0].price)}
                         </p>
                         <button
                           onClick={() =>
@@ -414,7 +417,7 @@ export default function Home({ initialProducts }: { initialProducts: ProductType
           </div>
           <span className="ml-1 text-xs text-gray-500">({product.rating.count})</span>
         </div>
-        <p className="mt-1 text-lg font-medium text-gray-900">${product.price.toFixed(2)}</p>
+        <p className="mt-1 text-lg font-medium text-gray-900">{formatPrice(product.price)}</p>
       </div>
     </div>
   </Link>

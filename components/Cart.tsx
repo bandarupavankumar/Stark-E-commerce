@@ -1,6 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useCart } from '../context/CartContext';
 import Image from 'next/image';
+import { formatPrice } from '../utils/format';
 
 export const Cart = () => {
   const { 
@@ -61,9 +62,9 @@ export const Cart = () => {
                               <div>
                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                   <h3 className="line-clamp-1">{item.title}</h3>
-                                  <p className="ml-4">${(item.price * item.quantity).toFixed(2)}</p>
+                                  <p className="ml-4">{formatPrice(item.price * item.quantity)}</p>
                                 </div>
-                                <p className="mt-1 text-sm text-gray-500">${item.price.toFixed(2)} each</p>
+                                <p className="mt-1 text-sm text-gray-500">{formatPrice(item.price)} each</p>
                               </div>
                               <div className="flex flex-1 items-end justify-between text-sm">
                                 <div className="flex items-center">
